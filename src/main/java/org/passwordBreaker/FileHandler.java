@@ -2,6 +2,7 @@ package org.passwordBreaker;
 
 
 import org.passwordBreaker.domain.UserCredentials;
+import org.passwordBreaker.exceptions.FileFormatException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,19 +18,19 @@ import static org.passwordBreaker.Utils.createUserCredentials;
 // TODO: improve exception handling
 
 public class FileHandler {
-    public static List<String> getWordsFromFile(String filename) {
+    public static List<String> getWordsFromFile(String filename) throws FileFormatException {
         List<String> words = new ArrayList<>();
 
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach(words::add);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileFormatException(e.getMessage());
         }
 
         return words;
     }
 
-    public static Map<String, UserCredentials> getUserCredentialsFromFile(String filename) {
+    public static Map<String, UserCredentials> getUserCredentialsFromFile(String filename) throws FileFormatException {
         Map<String, UserCredentials> userCredentialsMap = new HashMap<>();
 
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
@@ -40,7 +41,7 @@ public class FileHandler {
                 userCredentialsMap.put(userCredentials.getHashedPassword(), userCredentials);
             });
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileFormatException(e.getMessage());
         }
 
         return userCredentialsMap;
