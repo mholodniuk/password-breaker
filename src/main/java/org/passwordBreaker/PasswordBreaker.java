@@ -20,15 +20,16 @@ public class PasswordBreaker {
 
     public PasswordBreaker() {
         String currentWorkingDirectory = new File("./").getAbsolutePath() + "/src/main/resources/";
-        userCredentialsMap = getUserCredentialsFromFile(currentWorkingDirectory + "user-data2.txt");
-        words = getWordsFromFile(currentWorkingDirectory + "mini-dictionary.txt");
+        userCredentialsMap = getUserCredentialsFromFile(currentWorkingDirectory + "user-data4.txt");
+        words = getWordsFromFile(currentWorkingDirectory + "small-dictionary.txt");
     }
 
     public List<PasswordData> findPasswordsWithPostfix(Integer start, Integer end) {
         return words.stream()
                 .flatMap(word -> IntStream.range(start, end)
                         .mapToObj(i -> new PasswordData(hashPassword(word + i).orElseThrow(), word + i))
-                        .filter(hashedWord -> userCredentialsMap.get(hashedWord.getHashedValue()) != null))
+                )
+                .filter(hashedWord -> userCredentialsMap.get(hashedWord.getHashedValue()) != null)
                 .toList();
     }
 
@@ -36,7 +37,8 @@ public class PasswordBreaker {
         return words.stream()
                 .flatMap(firstWord -> words.stream()
                         .map(secondWord -> new PasswordData(hashPassword(firstWord + separator + secondWord).orElseThrow(), firstWord + separator + secondWord))
-                        .filter(hashedWord -> userCredentialsMap.get(hashedWord.getHashedValue()) != null))
+                )
+                .filter(hashedWord -> userCredentialsMap.get(hashedWord.getHashedValue()) != null)
                 .toList();
     }
 
@@ -44,7 +46,8 @@ public class PasswordBreaker {
         return words.stream()
                 .flatMap(word -> IntStream.range(start, end)
                         .mapToObj(i -> new PasswordData(hashPassword(i + word).orElseThrow(), i + word))
-                        .filter(hashedWord -> userCredentialsMap.get(hashedWord.getHashedValue()) != null))
+                )
+                .filter(hashedWord -> userCredentialsMap.get(hashedWord.getHashedValue()) != null)
                 .toList();
     }
 
@@ -70,7 +73,7 @@ public class PasswordBreaker {
 
         PasswordBreaker passwordBreaker = new PasswordBreaker();
 
-        passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 100).forEach(hashedPassword -> {
+        passwordBreaker.findTwoWordPasswords(" ").forEach(hashedPassword -> {
             String hash = hashedPassword.getHashedValue();
             String password = hashedPassword.getInputValue();
 
