@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="add password creating methods">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/exceptions/PasswordsNotFoundException.java" afterDir="false" />
+    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="change password detection algorithm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserData.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +30,6 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserCredentials.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserData.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -78,7 +77,7 @@
       <workItem from="1670604509482" duration="1201000" />
       <workItem from="1670626017080" duration="2495000" />
       <workItem from="1670670002570" duration="10732000" />
-      <workItem from="1670693043135" duration="3377000" />
+      <workItem from="1670693043135" duration="5376000" />
     </task>
     <task id="LOCAL-00001" summary="add hashing and basic breaking password algorithm">
       <created>1670498738771</created>
@@ -94,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670679908071</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="change password detection algorithm">
+      <created>1670709091756</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670709091756</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +120,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add hashing and basic breaking password algorithm" />
     <MESSAGE value="add password creating methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="add password creating methods" />
+    <MESSAGE value="change password detection algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="change password detection algorithm" />
   </component>
 </project>

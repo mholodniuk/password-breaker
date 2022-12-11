@@ -9,22 +9,22 @@ import java.util.List;
 import java.util.Optional;
 
 public class Utils {
-    public static Optional<String> hashPassword(String password) {
+    public static String hashPassword(String password) {
+        MessageDigest md = null;
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(password.getBytes());
-            byte[] bytes = md.digest();
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            // todo: handle it better
+            return "";
+        }
+        md.update(password.getBytes());
+        byte[] bytes = md.digest();
 
-            StringBuilder sb = new StringBuilder();
-            for (byte aByte : bytes) {
-                sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
-            }
-            return Optional.of(sb.toString());
+        StringBuilder sb = new StringBuilder();
+        for (byte aByte : bytes) {
+            sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
         }
-        catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return Optional.empty();
+        return sb.toString();
     }
 
     public static UserCredentials createUserCredentials(String[] userData) {
