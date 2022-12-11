@@ -7,8 +7,6 @@
     <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="change password detection algorithm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserData.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +76,8 @@
       <workItem from="1670626017080" duration="2495000" />
       <workItem from="1670670002570" duration="10732000" />
       <workItem from="1670693043135" duration="5376000" />
+      <workItem from="1670779192961" duration="489000" />
+      <workItem from="1670786921600" duration="4529000" />
     </task>
     <task id="LOCAL-00001" summary="add hashing and basic breaking password algorithm">
       <created>1670498738771</created>
