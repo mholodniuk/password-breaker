@@ -7,7 +7,7 @@ import sun.misc.Signal;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 
 import static org.passwordBreaker.FileHandler.getUserCredentialsFromFile;
 import static org.passwordBreaker.FileHandler.getWordsFromFile;
@@ -25,9 +25,7 @@ class Producer0 extends Thread {
                 String hash = passwordData.getHashedValue();
                 String input = passwordData.getInputValue();
 
-                decodedPasswords.addPassword(
-                        "Decoded password " + input + " (" + hash + ")");
-
+                decodedPasswords.addPassword("Decoded password " + input + " (" + hash + ")");
                 passwordBreaker.getUserCredentialsMap().remove(hash);
             });
         }
@@ -46,9 +44,7 @@ class Producer1 extends Thread {
                 String hash = passwordData.getHashedValue();
                 String input = passwordData.getInputValue();
 
-                decodedPasswords.addPassword(
-                        "Decoded password " + input + " (" + hash + ")");
-
+                decodedPasswords.addPassword("Decoded password " + input + " (" + hash + ")");
                 passwordBreaker.getUserCredentialsMap().remove(hash);
             });
         }
@@ -67,9 +63,7 @@ class Producer2 extends Thread {
                 String hash = passwordData.getHashedValue();
                 String input = passwordData.getInputValue();
 
-                decodedPasswords.addPassword(
-                        "Decoded password " + input + " (" + hash + ")");
-
+                decodedPasswords.addPassword("Decoded password " + input + " (" + hash + ")");
                 passwordBreaker.getUserCredentialsMap().remove(hash);
             });
         }
@@ -88,9 +82,7 @@ class Producer3 extends Thread {
                 String hash = passwordData.getHashedValue();
                 String input = passwordData.getInputValue();
 
-                decodedPasswords.addPassword(
-                        "Decoded password " + input + " (" + hash + ")");
-
+                decodedPasswords.addPassword("Decoded password " + input + " (" + hash + ")");
                 passwordBreaker.getUserCredentialsMap().remove(hash);
             });
         }
@@ -112,7 +104,7 @@ public class Main {
     public static void main(String[] args) {
         String currentWorkingDirectory = new File("").getAbsolutePath() + "/src/main/resources/";
         List<String> words = getWordsFromFile(currentWorkingDirectory + "big-dictionary.txt");
-        Map<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDirectory + "user-data-final.txt");
+        ConcurrentMap<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDirectory + "user-data-final.txt");
         int numberOfUsers = userCredentialsMap.size();
         System.out.println("Number of users: " + numberOfUsers);
 
@@ -133,7 +125,7 @@ public class Main {
 
         Signal.handle(new Signal("HUP"), sig -> {
             System.out.println(sig.getName() + " (" + sig.getNumber() + ")");
-            System.out.println("Cracked " + (numberOfUsers - decodedPasswords.getDecodedPasswords().size()) + " passwords");
+            System.out.println("Cracked " + decodedPasswords.getDecodedPasswords().size() + " passwords");
             decodedPasswords.getPasswords();
         });
     }

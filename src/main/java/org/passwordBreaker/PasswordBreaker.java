@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.IntStream;
 
 import static org.passwordBreaker.FileHandler.getUserCredentialsFromFile;
@@ -16,11 +17,11 @@ import static org.passwordBreaker.Utils.hashPassword;
 // TODO: improve exception handling
 
 public class PasswordBreaker {
-    private final Map<String, UserCredentials> userCredentialsMap;
+    private final ConcurrentMap<String, UserCredentials> userCredentialsMap;
     private final List<String> words;
 
     // todo: how to access file while running outside intellij
-    public PasswordBreaker(Map<String, UserCredentials> userCredentialsMap, List<String> words) {
+    public PasswordBreaker(ConcurrentMap<String, UserCredentials> userCredentialsMap, List<String> words) {
         this.userCredentialsMap = userCredentialsMap;
         this.words = words;
     }
@@ -80,7 +81,7 @@ public class PasswordBreaker {
     public static void main(String[] args) {
         String currentWorkingDir = new File("").getAbsolutePath() + "/src/main/resources/";
         List<String> words = getWordsFromFile(currentWorkingDir + "mini-dictionary.txt");
-        Map<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDir + "user-data1.txt");
+        ConcurrentMap<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDir + "user-data1.txt");
 
         PasswordBreaker passwordBreaker = new PasswordBreaker(userCredentialsMap, words);
 
@@ -102,7 +103,7 @@ public class PasswordBreaker {
         }
     }
 
-    public synchronized Map<String, UserCredentials> getUserCredentialsMap() {
+    public ConcurrentMap<String, UserCredentials> getUserCredentialsMap() {
         return userCredentialsMap;
     }
 }

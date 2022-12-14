@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Stream;
 
 import static org.passwordBreaker.Utils.createUserCredentials;
@@ -27,8 +29,8 @@ public class FileHandler {
         return words;
     }
 
-    public static Map<String, UserCredentials> getUserCredentialsFromFile(String filename) {
-        Map<String, UserCredentials> userCredentialsMap = new HashMap<>();
+    public static ConcurrentMap<String, UserCredentials> getUserCredentialsFromFile(String filename) {
+        ConcurrentMap<String, UserCredentials> userCredentialsMap = new ConcurrentHashMap<>();
 
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach((line) -> {
