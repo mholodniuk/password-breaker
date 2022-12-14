@@ -1,12 +1,12 @@
 package org.passwordBreaker;
 
 import org.passwordBreaker.domain.UserCredentials;
+import org.passwordBreaker.exceptions.FileFormatException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class Utils {
     public static String hashPassword(String password) {
@@ -27,8 +27,11 @@ public class Utils {
         return sb.toString();
     }
 
-    public static UserCredentials createUserCredentials(String[] userData) {
+    public static UserCredentials createUserCredentials(String[] userData) throws FileFormatException {
         List<String> listOfUserData = Arrays.stream(userData).toList();
+        if (listOfUserData.size() < 3) {
+            throw new FileFormatException("User " + listOfUserData.get(0) + " lacks important information");
+        }
         UserCredentials userCredentials = new UserCredentials();
         userCredentials.setId(Long.valueOf(listOfUserData.get(0)));
         userCredentials.setHashedPassword(listOfUserData.get(1));

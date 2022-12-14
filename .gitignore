@@ -37,3 +37,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Large files ###
+src/main/resources/big-dictionary.txt
+src/main/resources/user-data-final.txt

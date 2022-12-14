@@ -1,12 +1,9 @@
 package org.passwordBreaker;
 
-import lombok.Getter;
 import org.passwordBreaker.domain.PasswordData;
 import org.passwordBreaker.domain.UserCredentials;
-import sun.misc.Signal;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -20,24 +17,14 @@ import static org.passwordBreaker.Utils.hashPassword;
 // todo: maybe inject userCredentialsMap as a parameter or user ConcurrentHashMap
 
 public class PasswordBreaker {
-    @Getter
+
     private final Map<String, UserCredentials> userCredentialsMap;
-    @Getter
-    private final List<String> decodedPasswords;
     private final List<String> words;
 
-    // todo: how to access file while running outside of intellij
-    public PasswordBreaker() {
-        decodedPasswords = new ArrayList<>();
-        // here ask user for location of password and word files
-        String currentWorkingDirectory = new File("").getAbsolutePath() + "/src/main/resources/";
-        userCredentialsMap = getUserCredentialsFromFile(currentWorkingDirectory + "user-data2.txt");
-        words = getWordsFromFile(currentWorkingDirectory + "small-dictionary.txt");
-    }
-
-    public void addDecodedPassword(String message) {
-        System.out.println(message);
-        decodedPasswords.add(message);
+    // todo: how to access file while running outside intellij
+    public PasswordBreaker(Map<String, UserCredentials> userCredentialsMap, List<String> words) {
+        this.userCredentialsMap = userCredentialsMap;
+        this.words = words;
     }
 
     public Optional<PasswordData> findPasswordsWithPostfix(Integer start, Integer end) {
@@ -93,16 +80,14 @@ public class PasswordBreaker {
     }
 
     public static void main(String[] args) {
-        PasswordBreaker passwordBreaker = new PasswordBreaker();
+        String currentWorkingDir = new File("").getAbsolutePath() + "/src/main/resources/";
+        List<String> words = getWordsFromFile(currentWorkingDir + "mini-dictionary.txt");
+        Map<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDir + "user-data1.txt");
 
-        Signal.handle(new Signal("HUP"), sig -> {
-            System.out.println(sig.getName() + " (" + sig.getNumber() + ")");
-            passwordBreaker.getDecodedPasswords().forEach(System.out::println);
-        });
-
+        PasswordBreaker passwordBreaker = new PasswordBreaker(userCredentialsMap, words);
 
         while (!passwordBreaker.getUserCredentialsMap().isEmpty()) {
-            passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 100)
+            passwordBreaker.findSimplePasswords()
                     .ifPresent(passwordData -> {
                         String hash = passwordData.getHashedValue();
                         String password = passwordData.getInputValue();
@@ -110,11 +95,16 @@ public class PasswordBreaker {
                         String result = "Password for " +
                                 passwordBreaker.getUserCredentialsMap().get(hash).getMail() +
                                 " is " + password;
-                        passwordBreaker.addDecodedPassword(result);
+
+                        System.out.println(result);
 
                         passwordBreaker.getUserCredentialsMap().remove(hash);
                         System.out.println("userCredentialsMap is now: " + passwordBreaker.getUserCredentialsMap());
                     });
         }
+    }
+
+    public synchronized Map<String, UserCredentials> getUserCredentialsMap() {
+        return userCredentialsMap;
     }
 }
