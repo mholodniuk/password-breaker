@@ -47,7 +47,6 @@ public class FileHandler {
             throw new RuntimeException(e.getMessage());
         }
 
-        System.out.println("Number of users: " + userCredentialsMap.size());
         return userCredentialsMap;
     }
 }

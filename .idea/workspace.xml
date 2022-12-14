@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="change mapping function">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" afterDir="false" />
+    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="add threads">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/DecodedPasswords.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/big-dictionary.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/user-data-final.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/FileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +92,7 @@
       <workItem from="1670794407037" duration="24000" />
       <workItem from="1670875259448" duration="1028000" />
       <workItem from="1671021165841" duration="459000" />
-      <workItem from="1671024711867" duration="13684000" />
+      <workItem from="1671024711867" duration="16762000" />
     </task>
     <task id="LOCAL-00001" summary="add hashing and basic breaking password algorithm">
       <created>1670498738771</created>
@@ -122,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670794022429</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add threads">
+      <created>1671038748868</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671038748868</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +151,7 @@
     <MESSAGE value="add password creating methods" />
     <MESSAGE value="change password detection algorithm" />
     <MESSAGE value="change mapping function" />
-    <option name="LAST_COMMIT_MESSAGE" value="change mapping function" />
+    <MESSAGE value="add threads" />
+    <option name="LAST_COMMIT_MESSAGE" value="add threads" />
   </component>
 </project>

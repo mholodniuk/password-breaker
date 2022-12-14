@@ -14,10 +14,8 @@ import static org.passwordBreaker.FileHandler.getWordsFromFile;
 import static org.passwordBreaker.Utils.hashPassword;
 
 // TODO: improve exception handling
-// todo: maybe inject userCredentialsMap as a parameter or user ConcurrentHashMap
 
 public class PasswordBreaker {
-
     private final Map<String, UserCredentials> userCredentialsMap;
     private final List<String> words;
 
