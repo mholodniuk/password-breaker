@@ -1,15 +1,11 @@
 package org.passwordBreaker.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+
 public class DecodedPasswords {
-    private List<String> decodedPasswords = new ArrayList<>();
+    private final List<String> decodedPasswords = new ArrayList<>();
     private String lastDecodedPassword;
     private boolean valueSet = false;
 
@@ -41,14 +37,8 @@ public class DecodedPasswords {
     }
 
     public synchronized void getPasswords() {
-        while (!valueSet) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        decodedPasswords.forEach(System.out::println);
+//        decodedPasswords.forEach(System.out::println);
+        System.out.println("Cracked " + decodedPasswords.size() + " passwords");
         valueSet = false;
         notifyAll();
     }

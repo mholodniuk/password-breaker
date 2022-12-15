@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="multithreading works">
+    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="change Map to ConcurrentMap for thread safety">
       <change afterPath="$PROJECT_DIR$/src/main/resources/big-dictionary.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/user-data-final.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/user-data3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/FileHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/DecodedPasswords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/DecodedPasswords.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +48,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindowMessages.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/maciejholodniuk/IdeaProjects/password-breaker/src/main/resources&quot;,
@@ -55,6 +57,11 @@
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -92,7 +99,9 @@
       <workItem from="1670875259448" duration="1028000" />
       <workItem from="1671021165841" duration="459000" />
       <workItem from="1671024711867" duration="16891000" />
-      <workItem from="1671053013684" duration="452000" />
+      <workItem from="1671053013684" duration="640000" />
+      <workItem from="1671092567990" duration="2345000" />
+      <workItem from="1671094924225" duration="1787000" />
     </task>
     <task id="LOCAL-00001" summary="add hashing and basic breaking password algorithm">
       <created>1670498738771</created>
@@ -136,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671041745536</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="change Map to ConcurrentMap for thread safety">
+      <created>1671053622468</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671053622468</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +176,7 @@
     <MESSAGE value="change mapping function" />
     <MESSAGE value="add threads" />
     <MESSAGE value="multithreading works" />
-    <option name="LAST_COMMIT_MESSAGE" value="multithreading works" />
+    <MESSAGE value="change Map to ConcurrentMap for thread safety" />
+    <option name="LAST_COMMIT_MESSAGE" value="change Map to ConcurrentMap for thread safety" />
   </component>
 </project>
