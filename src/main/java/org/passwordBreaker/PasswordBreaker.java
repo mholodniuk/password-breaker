@@ -1,11 +1,12 @@
 package org.passwordBreaker;
 
+import lombok.AllArgsConstructor;
+import org.passwordBreaker.domain.DecodedPasswords;
 import org.passwordBreaker.domain.PasswordData;
 import org.passwordBreaker.domain.UserCredentials;
 
 import java.io.File;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.IntStream;
 
@@ -15,8 +16,10 @@ import static org.passwordBreaker.Utils.hashPassword;
 
 // TODO: improve exception handling
 
+@AllArgsConstructor
 public class PasswordBreaker {
     private final ConcurrentMap<String, UserCredentials> userCredentialsMap;
+    private final DecodedPasswords decodedPasswords;
     private final List<String> words;
 
     public enum WordModification {
@@ -25,14 +28,8 @@ public class PasswordBreaker {
         FIRST_CAPS
     }
 
-    // todo: how to access file while running outside intellij
-    public PasswordBreaker(ConcurrentMap<String, UserCredentials> userCredentialsMap, List<String> words) {
-        this.userCredentialsMap = userCredentialsMap;
-        this.words = words;
-    }
-
-    public Optional<PasswordData> findSimplePasswords(WordModification type) {
-        return words.stream()
+    public void findSimplePasswords(WordModification type) {
+        words.stream()
                 .map(word -> {
                     word = switch (type) {
                         case ALL_CAPS -> allLettersCaps(word);
@@ -42,11 +39,11 @@ public class PasswordBreaker {
                     return new PasswordData(hashPassword(word), word);
                 })
                 .filter(possiblePassword -> userCredentialsMap.containsKey(possiblePassword.getHashedValue()))
-                .findFirst();
+                .forEach(decodedPasswords::addPassword);
     }
 
-    public Optional<PasswordData> findPasswordsWithPostfix(Integer start, Integer end, WordModification type) {
-        return words.stream()
+    public void findPasswordsWithPostfix(Integer start, Integer end, WordModification type) {
+        words.stream()
                 .map(word -> switch (type) {
                     case ALL_CAPS -> allLettersCaps(word);
                     case NO_CAPS -> word;
@@ -57,11 +54,12 @@ public class PasswordBreaker {
                         .map(concatWord -> new PasswordData(hashPassword(concatWord), concatWord))
                 )
                 .filter(possiblePassword -> userCredentialsMap.containsKey(possiblePassword.getHashedValue()))
-                .findFirst();
+                .forEach(decodedPasswords::addPassword);
+
     }
 
-    public Optional<PasswordData> findPasswordsWithPrefix(Integer start, Integer end, WordModification type) {
-        return words.stream()
+    public void findPasswordsWithPrefix(Integer start, Integer end, WordModification type) {
+        words.stream()
                 .map(word -> switch (type) {
                     case ALL_CAPS -> allLettersCaps(word);
                     case NO_CAPS -> word;
@@ -72,11 +70,11 @@ public class PasswordBreaker {
                         .map(concatWord -> new PasswordData(hashPassword(concatWord), concatWord))
                 )
                 .filter(possiblePassword -> userCredentialsMap.containsKey(possiblePassword.getHashedValue()))
-                .findFirst();
+                .forEach(decodedPasswords::addPassword);
     }
 
-    public Optional<PasswordData> findTwoWordPasswords(String separator) {
-        return words.stream()
+    public void findTwoWordPasswords(String separator) {
+        words.stream()
                 .flatMap(firstWord -> words.stream()
                         .map(secondWord -> {
                             String concatWord = firstWord + separator + secondWord;
@@ -84,11 +82,11 @@ public class PasswordBreaker {
                         })
                 )
                 .filter(possiblePassword -> userCredentialsMap.containsKey(possiblePassword.getHashedValue()))
-                .findFirst();
+                .forEach(decodedPasswords::addPassword);
     }
 
-    public Optional<PasswordData> findPasswordsWithPrefixAndPostfix(Integer start, Integer end, WordModification type) {
-        return words.stream()
+    public void findPasswordsWithPrefixAndPostfix(Integer start, Integer end, WordModification type) {
+        words.stream()
                 .map(word -> switch (type) {
                     case ALL_CAPS -> allLettersCaps(word);
                     case NO_CAPS -> word;
@@ -102,7 +100,7 @@ public class PasswordBreaker {
                         )
                 )
                 .filter(possiblePassword -> userCredentialsMap.containsKey(possiblePassword.getHashedValue()))
-                .findFirst();
+                .forEach(decodedPasswords::addPassword);
     }
 
     private String firstLetterCaps(String word) {
@@ -116,29 +114,13 @@ public class PasswordBreaker {
     public static void main(String[] args) {
         String currentWorkingDir = new File("").getAbsolutePath() + "/src/main/resources/";
         List<String> words = getWordsFromFile(currentWorkingDir + "mini-dictionary.txt");
-        ConcurrentMap<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDir + "user-data3.txt");
+        ConcurrentMap<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDir + "user-data1.txt");
 
-        PasswordBreaker passwordBreaker = new PasswordBreaker(userCredentialsMap, words);
+        DecodedPasswords decodedPasswords = new DecodedPasswords(userCredentialsMap);
 
-        while (!passwordBreaker.getUserCredentialsMap().isEmpty()) {
-            passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 100, WordModification.FIRST_CAPS)
-                    .ifPresent(passwordData -> {
-                        String hash = passwordData.getHashedValue();
-                        String password = passwordData.getInputValue();
+        PasswordBreaker passwordBreaker = new PasswordBreaker(userCredentialsMap, decodedPasswords, words);
 
-                        String result = "Password for " +
-                                passwordBreaker.getUserCredentialsMap().get(hash).getMail() +
-                                " is " + password;
-
-                        System.out.println(result);
-
-                        passwordBreaker.getUserCredentialsMap().remove(hash);
-                        System.out.println("userCredentialsMap is now: " + passwordBreaker.getUserCredentialsMap());
-                    });
-        }
-    }
-
-    public ConcurrentMap<String, UserCredentials> getUserCredentialsMap() {
-        return userCredentialsMap;
+        passwordBreaker.findSimplePasswords(WordModification.NO_CAPS);
+        decodedPasswords.getCrackedPasswords();
     }
 }

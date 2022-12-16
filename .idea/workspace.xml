@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="change Map to ConcurrentMap for thread safety">
+    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="add capital letters handling">
       <change afterPath="$PROJECT_DIR$/src/main/resources/big-dictionary.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/user-data-final.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/user-data3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/DecodedPasswords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/DecodedPasswords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserCredentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserCredentials.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -101,7 +106,10 @@
       <workItem from="1671024711867" duration="16891000" />
       <workItem from="1671053013684" duration="640000" />
       <workItem from="1671092567990" duration="2345000" />
-      <workItem from="1671094924225" duration="1787000" />
+      <workItem from="1671094924225" duration="2118000" />
+      <workItem from="1671099853094" duration="601000" />
+      <workItem from="1671112271331" duration="1374000" />
+      <workItem from="1671209492820" duration="2889000" />
     </task>
     <task id="LOCAL-00001" summary="add hashing and basic breaking password algorithm">
       <created>1670498738771</created>
@@ -152,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671053622468</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add capital letters handling">
+      <created>1671097044271</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671097044271</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +192,7 @@
     <MESSAGE value="add threads" />
     <MESSAGE value="multithreading works" />
     <MESSAGE value="change Map to ConcurrentMap for thread safety" />
-    <option name="LAST_COMMIT_MESSAGE" value="change Map to ConcurrentMap for thread safety" />
+    <MESSAGE value="add capital letters handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="add capital letters handling" />
   </component>
 </project>

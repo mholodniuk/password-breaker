@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class UserCredentials {
-    Long id;
-    String hashedPassword;
-    String mail;
-    String username;
+    private Long id;
+    private String hashedPassword;
+    private String mail;
+    private String username;
 }
