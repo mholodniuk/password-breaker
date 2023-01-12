@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="add capital letters handling">
+    <list default="true" id="0a736b2d-6f39-4b42-bb4f-ea126bcbc765" name="Changes" comment="change design -&gt; remove optionals">
       <change afterPath="$PROJECT_DIR$/src/main/resources/big-dictionary.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/user-data-final.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/PasswordBreaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/DecodedPasswords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/DecodedPasswords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserCredentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/passwordBreaker/domain/UserCredentials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mini-dictionary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mini-dictionary.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +110,11 @@
       <workItem from="1671094924225" duration="2118000" />
       <workItem from="1671099853094" duration="601000" />
       <workItem from="1671112271331" duration="1374000" />
-      <workItem from="1671209492820" duration="2889000" />
+      <workItem from="1671209492820" duration="3883000" />
+      <workItem from="1671645364069" duration="2501000" />
+      <workItem from="1671650449361" duration="49000" />
+      <workItem from="1671697051935" duration="1840000" />
+      <workItem from="1673511734311" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="add hashing and basic breaking password algorithm">
       <created>1670498738771</created>
@@ -167,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671097044271</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="change design -&gt; remove optionals">
+      <created>1671212590881</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671212590881</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +205,7 @@
     <MESSAGE value="multithreading works" />
     <MESSAGE value="change Map to ConcurrentMap for thread safety" />
     <MESSAGE value="add capital letters handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="add capital letters handling" />
+    <MESSAGE value="change design -&gt; remove optionals" />
+    <option name="LAST_COMMIT_MESSAGE" value="change design -&gt; remove optionals" />
   </component>
 </project>

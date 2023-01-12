@@ -5,8 +5,10 @@ import org.passwordBreaker.exceptions.FileFormatException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Utils {
     public static String hashPassword(String password) {
@@ -42,4 +44,18 @@ public class Utils {
 
         return userCredentials;
     }
+
+    public static List<String> readUserInput() {
+        List<String> userData = new ArrayList<>();
+        System.out.println("Please enter your data below: (send 'exit' to exit) ");
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            String line = input.nextLine();
+            if (line.equalsIgnoreCase("exit"))
+                break;
+            userData.add(line);
+        }
+        return userData;
+    }
+
 }

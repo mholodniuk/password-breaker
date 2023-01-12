@@ -1,11 +1,12 @@
 package org.passwordBreaker;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
 import org.passwordBreaker.domain.DecodedPasswords;
 import org.passwordBreaker.domain.UserCredentials;
 import sun.misc.Signal;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
@@ -53,7 +54,7 @@ class Producer1_NC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPostfix(0, 100, NO_CAPS);
+        passwordBreaker.findPasswordsWithPostfix(0, 25, NO_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -64,7 +65,7 @@ class Producer1_AC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPostfix(0, 100, ALL_CAPS);
+        passwordBreaker.findPasswordsWithPostfix(0, 25, ALL_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -75,7 +76,7 @@ class Producer1_FC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPostfix(0, 100, FIRST_CAPS);
+        passwordBreaker.findPasswordsWithPostfix(0, 25, FIRST_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -86,7 +87,7 @@ class Producer2_NC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPrefix(0, 100, NO_CAPS);
+        passwordBreaker.findPasswordsWithPrefix(0, 25, NO_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -97,7 +98,7 @@ class Producer2_AC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPrefix(0, 100, ALL_CAPS);
+        passwordBreaker.findPasswordsWithPrefix(0, 25, ALL_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -108,7 +109,7 @@ class Producer2_FC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPrefix(0, 100, FIRST_CAPS);
+        passwordBreaker.findPasswordsWithPrefix(0, 25, FIRST_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -119,7 +120,7 @@ class Producer3_NC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 100, NO_CAPS);
+        passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 10, NO_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -130,7 +131,7 @@ class Producer3_AC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 100, ALL_CAPS);
+        passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 10, ALL_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -141,7 +142,7 @@ class Producer3_FC extends Thread {
 
     @Override
     public void run() {
-        passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 100, FIRST_CAPS);
+        passwordBreaker.findPasswordsWithPrefixAndPostfix(0, 10, FIRST_CAPS);
         System.out.println(this.getName() + " finished");
     }
 }
@@ -158,13 +159,12 @@ class Consumer extends Thread {
 }
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         long start = System.currentTimeMillis();
         String currentWorkingDirectory = new File("").getAbsolutePath() + "/src/main/resources/";
         List<String> words = getWordsFromFile(currentWorkingDirectory + "big-dictionary.txt");
         ConcurrentMap<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDirectory + "user-data-final.txt");
-        int numberOfUsers = userCredentialsMap.size();
-        System.out.println("Number of users: " + numberOfUsers);
+        System.out.println("Number of users: " + userCredentialsMap.size());
 
         DecodedPasswords decodedPasswords = new DecodedPasswords(userCredentialsMap);
         PasswordBreaker passwordBreaker = new PasswordBreaker(userCredentialsMap, decodedPasswords, words);
@@ -210,7 +210,6 @@ public class Main {
             System.out.println("Time of working: " + (System.currentTimeMillis() - start) + " [ms]");
             decodedPasswords.getCrackedPasswords();
         });
-
         System.out.println("Number of threads " + Thread.activeCount());
     }
 }

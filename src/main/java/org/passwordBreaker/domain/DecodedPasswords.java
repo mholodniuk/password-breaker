@@ -44,7 +44,7 @@ public class DecodedPasswords {
     }
 
     public synchronized void getCrackedPasswords() {
-        System.out.println("Cracked " + decodedPasswords.size() + " passwords");
+        System.out.println("Cracked " + decodedPasswords.size() + " password(s)");
         valueSet = false;
         notifyAll();
     }

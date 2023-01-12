@@ -8,6 +8,7 @@ import org.passwordBreaker.domain.UserCredentials;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.passwordBreaker.FileHandler.getUserCredentialsFromFile;
@@ -42,6 +43,26 @@ public class PasswordBreaker {
                 .forEach(decodedPasswords::addPassword);
     }
 
+    public void findPasswordsWithNumberReplacement() {
+        words.stream()
+                .map(word -> {
+                    String replacedWord =  word.chars()
+                            .mapToObj(c -> (char) c)
+                            .map(Object::toString)
+                            .map(letter -> switch (letter.toLowerCase()) {
+                                case "o" -> String.valueOf(0);
+                                case "l" -> String.valueOf(1);
+                                case "s" -> String.valueOf(5);
+                                default -> letter;
+                            })
+                            .collect(Collectors.joining());
+                    return new PasswordData(hashPassword(replacedWord), replacedWord);
+                })
+                .filter(possiblePassword -> userCredentialsMap.containsKey(possiblePassword.getHashedValue()))
+                .peek(passwordData -> System.out.println(passwordData.getInputValue()))
+                .forEach(decodedPasswords::addPassword);
+    }
+
     public void findPasswordsWithPostfix(Integer start, Integer end, WordModification type) {
         words.stream()
                 .map(word -> switch (type) {
@@ -55,7 +76,6 @@ public class PasswordBreaker {
                 )
                 .filter(possiblePassword -> userCredentialsMap.containsKey(possiblePassword.getHashedValue()))
                 .forEach(decodedPasswords::addPassword);
-
     }
 
     public void findPasswordsWithPrefix(Integer start, Integer end, WordModification type) {
@@ -117,10 +137,9 @@ public class PasswordBreaker {
         ConcurrentMap<String, UserCredentials> userCredentialsMap = getUserCredentialsFromFile(currentWorkingDir + "user-data1.txt");
 
         DecodedPasswords decodedPasswords = new DecodedPasswords(userCredentialsMap);
-
         PasswordBreaker passwordBreaker = new PasswordBreaker(userCredentialsMap, decodedPasswords, words);
 
-        passwordBreaker.findSimplePasswords(WordModification.NO_CAPS);
+        passwordBreaker.findPasswordsWithNumberReplacement();
         decodedPasswords.getCrackedPasswords();
     }
 }
